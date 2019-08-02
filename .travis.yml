@@ -16,6 +16,7 @@ script:
 
 deploy:
   provider: pages
+  local_dir: favicons
   repo: uwapcs/favicons
   target_branch: master
   skip_cleanup: true
