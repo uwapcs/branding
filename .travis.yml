@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - "8"
+
+before_script:
+  - npm install -g convert-svg-to-png
+  - npm install -g cli-real-favicon
+
+script:
+  - mkdir favicons
+  - cd favicons
+  - cp ../logo/logo.svg logo.svg
+  - convert-svg-to-png logo.svg
+  - cp ../icons/icon.svg icon.svg
+  - real-favicon generate ../icons/faviconDescription.json /dev/null .
+
+deploy:
+  provider: pages
+  repo: uwapcs/favicons
+  target_branch: master
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  on:
+    branch: master
